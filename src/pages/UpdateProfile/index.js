@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input, Profile} from '../../components';
 import {colors} from '../../utils';
 

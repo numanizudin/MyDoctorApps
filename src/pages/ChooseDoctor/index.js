@@ -30,24 +30,28 @@ export default function ChooseDoctor({navigation}) {
         profile={DummyDoctor2}
         name="Alexandre janie"
         desc="Wanita"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         type="next"
         profile={DummyDoctor3}
         name="Alexandre janie"
         desc="Wanita"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         type="next"
         profile={DummyDoctor4}
         name="Alexandre janie"
         desc="Wanita"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <List
         type="next"
         profile={DummyDoctor5}
         name="Alexandre janie"
         desc="Wanita"
+        onPress={() => navigation.navigate('Chatting')}
       />
     </View>
   );

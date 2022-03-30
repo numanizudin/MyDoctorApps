@@ -1,16 +1,21 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {DummyUser} from '../../../assets';
+import {DummyUser, IconRemovePhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function Profile() {
+export default function Profile({name, desc}) {
   return (
     <View style={styles.container}>
       <View style={styles.borderProfile}>
         <Image source={DummyUser} style={styles.avatar} />
+        <IconRemovePhoto style={styles.removePhoto} />
       </View>
-      <Text style={styles.name}>Anya Geraldine</Text>
-      <Text style={styles.desc}>Programmer</Text>
+      {name && (
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.desc}>{desc}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -42,5 +47,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[300],
     color: colors.text.secondary,
     marginTop: 2,
+  },
+  removePhoto: {
+    position: 'absolute',
+    right: 8,
+    bottom: 8,
   },
 });

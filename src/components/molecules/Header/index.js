@@ -2,8 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 import {Button, Gap} from '../../atoms';
+import UnguProfile from './UnguProfile';
 
 export default function Header({onPress, title, type}) {
+  if (type === 'ungu-profile') {
+    return <UnguProfile />;
+  }
   return (
     <View style={styles.container(type)}>
       <Button

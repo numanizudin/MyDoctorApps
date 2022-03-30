@@ -10,15 +10,20 @@ import {
 } from '../../assets';
 import {colors} from '../../utils';
 
-export default function ChooseDoctor() {
+export default function ChooseDoctor({navigation}) {
   return (
     <View style={styles.page}>
-      <Header title="Pilih Dokter Anak" type="ungu" />
+      <Header
+        title="Pilih Dokter Anak"
+        type="ungu"
+        onPress={() => navigation.goBack()}
+      />
       <ListDoctor
         type="next"
         profile={DummyDoctor1}
         name="Alexandre janie"
         desc="Wanita"
+        onPress={() => navigation.navigate('Chatting')}
       />
       <ListDoctor
         type="next"

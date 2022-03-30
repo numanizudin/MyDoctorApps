@@ -3,6 +3,7 @@ import React from 'react';
 import {ILHospitalBG} from '../../assets/illustration';
 import {colors, fonts} from '../../utils';
 import {ListHospitals} from '../../components';
+import {DummyHospital1, DummyHospital2, DummyHospital3} from '../../assets';
 
 export default function Hospitals() {
   return (
@@ -12,9 +13,24 @@ export default function Hospitals() {
         <Text style={styles.desc}>3 Tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListHospitals />
-        <ListHospitals />
-        <ListHospitals />
+        <ListHospitals
+          type="Rumah Sakit"
+          name="RSUD Pavilliun Sumedang"
+          address="Jl. Pangeran Sugih No.4"
+          pic={DummyHospital1}
+        />
+        <ListHospitals
+          type="Rumah Sakit Anak"
+          name="Happy Family Kids"
+          address="Jl. Pangeran Sugih No.4"
+          pic={DummyHospital2}
+        />
+        <ListHospitals
+          type="Rmah Sakit Jiwa"
+          name="RSJ Sumedang"
+          address="Jl. Pangeran Sugih No.4"
+          pic={DummyHospital3}
+        />
       </View>
     </View>
   );

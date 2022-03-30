@@ -1,16 +1,15 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {DummyHospital1} from '../../../assets';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-export default function ListHospitals() {
+export default function ListHospitals({type, name, address, pic}) {
   return (
     <View style={styles.container}>
-      <Image source={DummyHospital1} style={styles.picture} />
+      <Image source={pic} style={styles.picture} />
       <View>
-        <Text style={styles.title}>Rumah Sakit</Text>
-        <Text style={styles.title}>RSUD Kab Sumedang</Text>
-        <Text style={styles.address}>Jln. Pangeran Sugih 15</Text>
+        <Text style={styles.title}>{type}</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.address}>{address}</Text>
       </View>
     </View>
   );

@@ -3,11 +3,11 @@ import React from 'react';
 import {Button, Gap, Header, Profile, ProfileItem} from '../../components';
 import {colors} from '../../utils';
 
-export default function DoctorProfile() {
+export default function DoctorProfile({navigation}) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
-        <Header title="Doctor Profile" />
+        <Header title="Doctor Profile" onPress={() => navigation.goBack()} />
         <Profile name="Alifia Putri" desc="Dokter Anak" />
         <Gap height={10} />
         <ProfileItem label="Alumni" value="STMIK Sumedang, 2021" />
@@ -17,7 +17,10 @@ export default function DoctorProfile() {
         />
         <ProfileItem label="No. STR" value="1802837772600" />
         <View style={styles.btn}>
-          <Button title="Start Consultation" />
+          <Button
+            title="Start Consultation"
+            onPress={() => navigation.navigate('Chatting')}
+          />
         </View>
       </View>
     </ScrollView>

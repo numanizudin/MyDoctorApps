@@ -6,9 +6,9 @@ import {colors} from '../../utils';
 export default function UserProfile({navigation}) {
   return (
     <View style={styles.page}>
-      <Header title="Profile" />
+      <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile />
+      <Profile name="Anya Geraldine" desc="Programmer" />
       <Gap height={14} />
       <List
         name="Edit Profile"

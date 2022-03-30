@@ -6,7 +6,7 @@ import UnguProfile from './UnguProfile';
 
 export default function Header({onPress, title, type}) {
   if (type === 'ungu-profile') {
-    return <UnguProfile />;
+    return <UnguProfile onPress={onPress} />;
   }
   return (
     <View style={styles.container(type)}>

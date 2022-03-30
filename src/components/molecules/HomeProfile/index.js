@@ -1,7 +1,7 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {colors, fonts} from '../../../utils';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {DummyUser} from '../../../assets';
+import {colors, fonts} from '../../../utils';
 
 export default function HomeProfile() {
   return (

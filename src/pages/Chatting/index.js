@@ -9,9 +9,9 @@ export default function Chatting() {
       <Header type="ungu-profile" title="Alifia Putri" />
       <View style={styles.content}>
         <Text style={styles.chatDate}>Rabu, 30 Maret, 2022</Text>
+        <ChatItem isMe />
         <ChatItem />
-        <ChatItem />
-        <ChatItem />
+        <ChatItem isMe />
       </View>
       <InputChat />
     </View>

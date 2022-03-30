@@ -4,10 +4,10 @@ import {Button, Gap, Header, Link} from '../../components';
 import {ILNullPhoto, IconAddPhoto} from '../../assets';
 import {colors, fonts} from '../../utils';
 
-export default function UploadPhoto({navigation}) {
+export default function UploadPhoto() {
   return (
     <View style={styles.page}>
-      <Header title="Upload Photo" onPress={() => navigation.goBack()} />
+      <Header title="Upload Photo" />
       <View style={styles.content}>
         <View style={styles.profile}>
           <View style={styles.avatarWrapper}>

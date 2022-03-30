@@ -2,7 +2,7 @@ const mainColors = {
   ungu1: '#3344CC',
   ungu2: '#E7E8F4',
   dark1: '#112340',
-  dark2: '#495A75',
+  putih: '#FFFFFF',
   dark3: '#8092AF',
   grey1: '#7D8797',
   grey2: '#E9E9E9',
@@ -25,7 +25,7 @@ export const colors = {
     primary: mainColors.dark1,
     secondary: mainColors.grey1,
     menuInactive: mainColors.dark1,
-    menuActive: mainColors.ungu1,
+    menuActive: mainColors.putih,
     subTitle: mainColors.dark3,
   },
   button: {

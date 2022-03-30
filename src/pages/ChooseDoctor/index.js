@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Header, ListDoctor} from '../../components';
+import {Header, List} from '../../components';
 import {
   DummyDoctor1,
   DummyDoctor2,
@@ -18,32 +18,32 @@ export default function ChooseDoctor({navigation}) {
         type="ungu"
         onPress={() => navigation.goBack()}
       />
-      <ListDoctor
+      <List
         type="next"
         profile={DummyDoctor1}
         name="Alexandre janie"
         desc="Wanita"
         onPress={() => navigation.navigate('Chatting')}
       />
-      <ListDoctor
+      <List
         type="next"
         profile={DummyDoctor2}
         name="Alexandre janie"
         desc="Wanita"
       />
-      <ListDoctor
+      <List
         type="next"
         profile={DummyDoctor3}
         name="Alexandre janie"
         desc="Wanita"
       />
-      <ListDoctor
+      <List
         type="next"
         profile={DummyDoctor4}
         name="Alexandre janie"
         desc="Wanita"
       />
-      <ListDoctor
+      <List
         type="next"
         profile={DummyDoctor5}
         name="Alexandre janie"

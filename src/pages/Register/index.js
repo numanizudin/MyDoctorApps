@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, Input, Loading} from '../../components';
-import {useForm} from '../../utils';
+import {getData, storeData, useForm} from '../../utils';
 import {colors} from '../../utils/colors';
 import {Fire} from '../../config';
 import {showMessage, hideMessage} from 'react-native-flash-message';
@@ -34,6 +34,9 @@ export default function Register({navigation}) {
         Fire.database()
           .ref('users/' + success.user.uid + '/')
           .set(data);
+
+        storeData('user', data);
+        navigation.navigate('UploadPhoto', data);
         console.log('register success: ', success);
       })
       .catch(error => {
@@ -47,7 +50,6 @@ export default function Register({navigation}) {
         });
         console.log('error: ', error);
       });
-    // () => navigation.navigate('UploadPhoto')
   };
 
   return (

@@ -4,16 +4,27 @@ import {Button, Gap, Header, Link} from '../../components';
 import {ILNullPhoto, IconAddPhoto, IconRemovePhoto} from '../../assets';
 import {colors, fonts} from '../../utils';
 import ImagePicker from 'react-native-image-picker';
+import {showMessage} from 'react-native-flash-message';
 
-export default function UploadPhoto({navigation}) {
+export default function UploadPhoto({navigation, route}) {
+  const {fullName, profession} = route.params;
   const [hasPhoto, setHasPhoto] = useState(false);
   const [photo, setPhoto] = useState(ILNullPhoto);
   const getImage = () => {
     ImagePicker.launchImageLibrary({}, response => {
       // console.log('response', response);
-      const source = {uri: response.uri};
-      setPhoto(source);
-      setHasPhoto(true);
+      if (response.didCancel || response.error) {
+        showMessage({
+          message: 'oops, anda belum memilih foto',
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      } else {
+        const source = {uri: response.uri};
+        setPhoto(source);
+        setHasPhoto(true);
+      }
     });
   };
 
@@ -27,8 +38,8 @@ export default function UploadPhoto({navigation}) {
             {hasPhoto && <IconRemovePhoto style={styles.addPhoto} />}
             {!hasPhoto && <IconAddPhoto style={styles.addPhoto} />}
           </TouchableOpacity>
-          <Text style={styles.name}>Anya Geraldine</Text>
-          <Text style={styles.jobs}>Programmer</Text>
+          <Text style={styles.name}>{fullName}</Text>
+          <Text style={styles.jobs}>{profession}</Text>
         </View>
         <View>
           <Button

@@ -4,6 +4,7 @@ import {Button, Gap, Header, Input, Loading} from '../../components';
 import {useForm} from '../../utils';
 import {colors} from '../../utils/colors';
 import {Fire} from '../../config';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 export default function Register({navigation}) {
   const [form, setForm] = useForm({
@@ -22,12 +23,18 @@ export default function Register({navigation}) {
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
         setLoading(false);
+        setForm('reset');
         console.log('register success: ', success);
       })
       .catch(error => {
         const errorMessage = error.message;
         setLoading(false);
-        console.log('error register: ', errorMessage);
+        showMessage({
+          message: errorMessage,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
       });
     // () => navigation.navigate('UploadPhoto')
   };

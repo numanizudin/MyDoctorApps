@@ -24,6 +24,16 @@ export default function Register({navigation}) {
       .then(success => {
         setLoading(false);
         setForm('reset');
+
+        const data = {
+          fullName: form.fullName,
+          profession: form.profession,
+          email: form.email,
+        };
+
+        Fire.database()
+          .ref('users/' + success.user.uid + '/')
+          .set(data);
         console.log('register success: ', success);
       })
       .catch(error => {
@@ -35,6 +45,7 @@ export default function Register({navigation}) {
           backgroundColor: colors.error,
           color: colors.white,
         });
+        console.log('error: ', error);
       });
     // () => navigation.navigate('UploadPhoto')
   };

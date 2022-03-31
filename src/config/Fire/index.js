@@ -3,6 +3,7 @@ import firebase from 'firebase';
 firebase.initializeApp({
   apiKey: 'AIzaSyDiusd6_J2Irf2fIoh1bcss82-yNnvBPbk',
   authDomain: 'mydoctorapps-d3852.firebaseapp.com',
+  databaseURL: 'https://mydoctorapps-d3852-default-rtdb.firebaseio.com',
   projectId: 'mydoctorapps-d3852',
   storageBucket: 'mydoctorapps-d3852.appspot.com',
   messagingSenderId: '904824055963',

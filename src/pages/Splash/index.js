@@ -6,16 +6,18 @@ import {Fire} from '../../config';
 
 export default function Splash({navigation}) {
   useEffect(() => {
-    setTimeout(() => {
-      Fire.auth().onAuthStateChanged(user => {
+    const unsubcribe = Fire.auth().onAuthStateChanged(user => {
+      setTimeout(() => {
         if (user) {
           navigation.replace('MainApp');
         } else {
           navigation.replace('GetStarted');
         }
-      });
-    }, 3000);
-  }, []);
+      }, 3000);
+    });
+
+    return () => unsubcribe();
+  }, [navigation]);
 
   return (
     <View style={styles.page}>

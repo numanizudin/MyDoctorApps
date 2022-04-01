@@ -1,11 +1,27 @@
 import {StyleSheet, Text, View, ImageBackground} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ILHospitalBG} from '../../assets/illustration';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, showError} from '../../utils';
 import {ListHospitals} from '../../components';
 import {DummyHospital1, DummyHospital2, DummyHospital3} from '../../assets';
+import {Fire} from '../../config';
 
 export default function Hospitals() {
+  const [hospitals, setHospitals] = useState([]);
+  useEffect(() => {
+    Fire.database()
+      .ref('hospitals/')
+      .once('value')
+      .then(res => {
+        console.log('data: ', res.val());
+        if (res.val()) {
+          setHospitals(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <ImageBackground source={ILHospitalBG} style={styles.background}>
@@ -13,24 +29,17 @@ export default function Hospitals() {
         <Text style={styles.desc}>3 Tersedia</Text>
       </ImageBackground>
       <View style={styles.content}>
-        <ListHospitals
-          type="Rumah Sakit"
-          name="RSUD Pavilliun Sumedang"
-          address="Jl. Pangeran Sugih No.4"
-          pic={DummyHospital1}
-        />
-        <ListHospitals
-          type="Rumah Sakit Anak"
-          name="Happy Family Kids"
-          address="Jl. Pangeran Sugih No.4"
-          pic={DummyHospital2}
-        />
-        <ListHospitals
-          type="Rmah Sakit Jiwa"
-          name="RSJ Sumedang"
-          address="Jl. Pangeran Sugih No.4"
-          pic={DummyHospital3}
-        />
+        {hospitals.map(item => {
+          return (
+            <ListHospitals
+              key={item.id}
+              type={item.type}
+              name={item.name}
+              address={item.address}
+              pic={item.pic}
+            />
+          );
+        })}
       </View>
     </View>
   );

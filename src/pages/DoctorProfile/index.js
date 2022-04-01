@@ -3,19 +3,24 @@ import React from 'react';
 import {Button, Gap, Header, Profile, ProfileItem} from '../../components';
 import {colors} from '../../utils';
 
-export default function DoctorProfile({navigation}) {
+export default function DoctorProfile({navigation, route}) {
+  const dataDoctor = route.params;
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
         <Header title="Doctor Profile" onPress={() => navigation.goBack()} />
-        <Profile name="Alifia Putri" desc="Dokter Anak" />
+        <Profile
+          name={dataDoctor.data.fullName}
+          desc={dataDoctor.data.profession}
+          photo={{uri: dataDoctor.data.photo}}
+        />
         <Gap height={10} />
-        <ProfileItem label="Alumni" value="STMIK Sumedang, 2021" />
+        <ProfileItem label="Alumni" value={dataDoctor.data.university} />
         <ProfileItem
           label="Tempat Praktik"
-          value="Rumah Sakit Umum, Sumedang"
+          value={dataDoctor.data.hospital_address}
         />
-        <ProfileItem label="No. STR" value="1802837772600" />
+        <ProfileItem label="No. STR" value={dataDoctor.data.str_number} />
         <View style={styles.btn}>
           <Button
             title="Start Consultation"

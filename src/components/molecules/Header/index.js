@@ -37,5 +37,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: fonts.primary[600],
     color: type === 'ungu' ? colors.white : colors.text.primary,
+    textTransform: 'capitalize',
   }),
 });

@@ -1,5 +1,11 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  DummyDoctor1,
+  DummyDoctor2,
+  DummyDoctor3,
+  JSONCategoryDoctor,
+} from '../../assets';
 import {
   DoctorCategory,
   Gap,
@@ -7,15 +13,25 @@ import {
   NewsItem,
   RatedDoctor,
 } from '../../components';
-import {colors, fonts, getData} from '../../utils';
-import {
-  DummyDoctor1,
-  DummyDoctor2,
-  DummyDoctor3,
-  JSONCategoryDoctor,
-} from '../../assets';
+import {Fire} from '../../config';
+import {colors, fonts, showError} from '../../utils';
 
 export default function Doctor({navigation}) {
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    Fire.database()
+      .ref('news/')
+      .once('value')
+      .then(res => {
+        console.log('data: ', res.val());
+        if (res.val()) {
+          setNews(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -66,9 +82,16 @@ export default function Doctor({navigation}) {
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem />
-          <NewsItem />
-          <NewsItem />
+          {news.map(item => {
+            return (
+              <NewsItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                image={item.image}
+              />
+            );
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>

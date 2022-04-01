@@ -5,10 +5,12 @@ import {Provider, useSelector} from 'react-redux';
 import {Loading} from './components';
 import store from './redux/store';
 import Router from './router';
+import {YellowBox} from 'react-native';
 
 const MainApp = () => {
   const stateGlobal = useSelector(state => state);
-  console.log('state global: ', stateGlobal);
+  YellowBox.ignoreWarnings(['Setting a timer']);
+  YellowBox.ignoreWarnings(['FIREBASE WARNING']);
   return (
     <>
       <NavigationContainer>

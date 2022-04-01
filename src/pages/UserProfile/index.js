@@ -61,7 +61,7 @@ export default function UserProfile({navigation}) {
         name="Sign Out"
         desc="Last Update Yesterday"
         type="next"
-        icon="edit-profile"
+        icon="help"
         onPress={signOut}
       />
     </View>

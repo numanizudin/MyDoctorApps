@@ -1,7 +1,14 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {ChatItem, Header, InputChat} from '../../components';
-import {colors, fonts, getData, showError} from '../../utils';
+import {
+  colors,
+  fonts,
+  getChatTime,
+  getData,
+  setDateChat,
+  showError,
+} from '../../utils';
 import {Fire} from '../../config';
 
 export default function Chatting({navigation, route}) {
@@ -17,25 +24,21 @@ export default function Chatting({navigation, route}) {
 
   const chatSend = () => {
     const today = new Date();
-    const hour = today.getHours();
-    const minute = today.getMinutes();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const date = today.getDate();
 
     const data = {
       sendBy: user.uid,
-      chatDate: new Date().getTime(),
-      chatTIme: `${hour}:${minute} ${hour > 12 ? 'PM' : 'AM'}`,
+      chatDate: today.getTime(),
+      chatTIme: getChatTime(today),
       chatContent: chatContent,
     };
-    setChatContent('');
+
+    const chatID = `${user.uid}_${dataDoctor.data.uid}`;
+
+    const urlFirebase = `chatting/${chatID}/allChat/${setDateChat(today)}`;
+
+    // Kirim Ke Firebase
     Fire.database()
-      .ref(
-        `chatting/${user.uid}_${
-          dataDoctor.data.uid
-        }/allChat/${year}-${month}-${date}`,
-      )
+      .ref(urlFirebase)
       .push(data)
       .then(() => {
         setChatContent('');

@@ -9,7 +9,7 @@ export default function ChooseDoctor({navigation, route}) {
   const itemCategory = route.params;
   useEffect(() => {
     callDoctorByCategory(itemCategory.category);
-  }, []);
+  }, [itemCategory.category]);
 
   const callDoctorByCategory = category => {
     Fire.database()

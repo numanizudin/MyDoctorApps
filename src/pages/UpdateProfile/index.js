@@ -69,7 +69,6 @@ export default function UpdateProfile({navigation}) {
       .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
-        console.log('success: ', data);
         storeData('user', data);
       })
       .catch(err => {
@@ -93,7 +92,6 @@ export default function UpdateProfile({navigation}) {
     ImagePicker.launchImageLibrary(
       {quality: 0.5, maxWidth: 200, maxHeight: 200},
       response => {
-        // console.log('response', response);
         if (response.didCancel || response.error) {
           showMessage({
             message: 'oops, anda belum memilih foto',

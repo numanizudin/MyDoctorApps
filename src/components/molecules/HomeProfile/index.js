@@ -12,10 +12,8 @@ export default function HomeProfile({onPress}) {
 
   useEffect(() => {
     getData('user').then(res => {
-      // console.log('data user: ', res);
       const data = res;
       data.photo = {uri: res.photo};
-      console.log('new profile: ', data);
       setProfile(res);
     });
   }, []);

@@ -16,7 +16,6 @@ export default function UploadPhoto({navigation, route}) {
     ImagePicker.launchImageLibrary(
       {quality: 0.5, maxWidth: 200, maxHeight: 200},
       response => {
-        // console.log('response', response);
         if (response.didCancel || response.error) {
           showMessage({
             message: 'oops, anda belum memilih foto',

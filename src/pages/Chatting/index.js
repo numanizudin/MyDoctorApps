@@ -46,7 +46,7 @@ export default function Chatting({navigation, route}) {
           setChatData(allDataChat);
         }
       });
-  }, []);
+  }, [dataDoctor.data.uid, user.uid]);
 
   const getDataUserFromLocal = () => {
     getData('user').then(res => {
@@ -56,6 +56,7 @@ export default function Chatting({navigation, route}) {
 
   const chatSend = () => {
     const today = new Date();
+
     const data = {
       sendBy: user.uid,
       chatDate: today.getTime(),
@@ -66,19 +67,37 @@ export default function Chatting({navigation, route}) {
     const chatID = `${user.uid}_${dataDoctor.data.uid}`;
 
     const urlFirebase = `chatting/${chatID}/allChat/${setDateChat(today)}`;
-
-    // Kirim Ke Firebase
+    const urlMessageUser = `messages/${user.uid}/${chatID}`;
+    const urlMessageDoctor = `messages/${dataDoctor.data.uid}/${chatID}`;
+    const dataHistoryChatForUser = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: dataDoctor.data.uid,
+    };
+    const dataHistoryChatForDoctor = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(),
+      uidPartner: user.uid,
+    };
     Fire.database()
       .ref(urlFirebase)
       .push(data)
       .then(() => {
         setChatContent('');
+        // set History for User
+        Fire.database()
+          .ref(urlMessageUser)
+          .set(dataHistoryChatForUser);
+
+        // set History for Doctor
+        Fire.database()
+          .ref(urlMessageDoctor)
+          .set(dataHistoryChatForDoctor);
       })
       .catch(err => {
         showError(err.message);
       });
   };
-
   return (
     <View style={styles.page}>
       <Header

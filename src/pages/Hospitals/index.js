@@ -1,10 +1,9 @@
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {ILHospitalBG} from '../../assets/illustration';
-import {colors, fonts, showError} from '../../utils';
 import {ListHospitals} from '../../components';
-import {DummyHospital1, DummyHospital2, DummyHospital3} from '../../assets';
 import {Fire} from '../../config';
+import {colors, fonts, showError} from '../../utils';
 
 export default function Hospitals() {
   const [hospitals, setHospitals] = useState([]);
@@ -13,7 +12,6 @@ export default function Hospitals() {
       .ref('hospitals/')
       .once('value')
       .then(res => {
-        console.log('data: ', res.val());
         if (res.val()) {
           setHospitals(res.val());
         }

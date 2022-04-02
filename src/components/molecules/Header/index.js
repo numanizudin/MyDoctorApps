@@ -4,9 +4,11 @@ import {colors, fonts} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 import UnguProfile from './UnguProfile';
 
-export default function Header({onPress, title, type}) {
+export default function Header({onPress, title, type, photo, desc}) {
   if (type === 'ungu-profile') {
-    return <UnguProfile onPress={onPress} />;
+    return (
+      <UnguProfile onPress={onPress} title={title} desc={desc} photo={photo} />
+    );
   }
   return (
     <View style={styles.container(type)}>

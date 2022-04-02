@@ -1,15 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Header, List} from '../../components';
-import {
-  DummyDoctor1,
-  DummyDoctor2,
-  DummyDoctor3,
-  DummyDoctor4,
-  DummyDoctor5,
-} from '../../assets';
-import {colors} from '../../utils';
 import {Fire} from '../../config';
+import {colors} from '../../utils';
 
 export default function ChooseDoctor({navigation, route}) {
   const [listDoctor, setListDoctor] = useState([]);
@@ -25,7 +18,6 @@ export default function ChooseDoctor({navigation, route}) {
       .equalTo(category)
       .once('value')
       .then(res => {
-        console.log('data list doctor: ', res.val());
         if (res.val()) {
           const oldData = res.val();
           const data = [];
@@ -39,7 +31,6 @@ export default function ChooseDoctor({navigation, route}) {
         }
       });
   };
-
   return (
     <View style={styles.page}>
       <Header

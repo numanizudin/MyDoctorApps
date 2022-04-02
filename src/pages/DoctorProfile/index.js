@@ -6,8 +6,8 @@ import {colors} from '../../utils';
 export default function DoctorProfile({navigation, route}) {
   const dataDoctor = route.params;
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.page}>
+    <View style={styles.page}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Header title="Doctor Profile" onPress={() => navigation.goBack()} />
         <Profile
           name={dataDoctor.data.fullName}
@@ -24,11 +24,11 @@ export default function DoctorProfile({navigation, route}) {
         <View style={styles.btn}>
           <Button
             title="Start Consultation"
-            onPress={() => navigation.navigate('Chatting')}
+            onPress={() => navigation.navigate('Chatting', dataDoctor)}
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 

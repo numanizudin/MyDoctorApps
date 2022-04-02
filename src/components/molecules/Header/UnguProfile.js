@@ -4,15 +4,15 @@ import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 import {DummyDoctor9} from '../../../assets';
 
-export default function UnguProfile({onPress}) {
+export default function UnguProfile({onPress, title, desc, photo}) {
   return (
     <View style={styles.container}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
       <View style={styles.content}>
-        <Text style={styles.name}>Alifia Putri</Text>
-        <Text style={styles.desc}>Dokter Anak</Text>
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.desc}>{desc}</Text>
       </View>
-      <Image source={DummyDoctor9} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
     </View>
   );
 }

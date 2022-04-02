@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyDoctor1, DummyDoctor2, DummyDoctor3} from '../../assets';
 import {
   DoctorCategory,
   Gap,
@@ -25,10 +24,9 @@ export default function Doctor({navigation}) {
     Fire.database()
       .ref('doctors/')
       .orderByChild('rate')
-      .limitToLast(3)
+      .limitToLast(2)
       .once('value')
       .then(res => {
-        console.log('top rated doctor: ', res.val());
         if (res.val()) {
           const oldData = res.val();
           const data = [];
@@ -51,7 +49,6 @@ export default function Doctor({navigation}) {
       .ref('category_doctor/')
       .once('value')
       .then(res => {
-        console.log('category doctor: ', res.val());
         if (res.val()) {
           const data = res.val();
           const filterData = data.filter(el => el !== null);
